@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unirse al Quiz</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #d766bb, #5f274c);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            width: 90%;
+            max-width: 380px;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            animation: fadeIn 1s ease-in-out;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        p {
+            margin-top: -5px;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background: #ffcc00;
+            color: black;
+            padding: 13px;
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #ffe066;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsivo */
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            h1 { font-size: 24px; }
+        }
+
+        #waitingScreen {
+            display: none;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .loader {
+            margin: 20px auto;
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            border-top: 6px solid white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0); }
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container" id="joinSection">
+        <h1>Unirse al Quiz</h1>
+        <p>Ingresa el PIN que te dio el anfitrión</p>
+
+        <input type="number" id="pinInput" placeholder="Código PIN">
+        <button onclick="joinQuiz()">Ingresar</button>
+    </div>
+
+    <div class="container" id="waitingScreen">
+        <h1>Esperando al anfitrión</h1>
+        <div class="loader"></div>
+        <p>Tu host iniciará el juego pronto...</p>
+    </div>
+
+<script>
+    function joinQuiz() {
+        const pin = document.getElementById("pinInput").value;
+
+        if (pin === "") {
+            alert("Por favor ingresa un PIN.");
+            return;
+        }
+
+        document.getElementById("joinSection").style.display = "none";
+        document.getElementById("waitingScreen").style.display = "block";
+
+        console.log("PIN ingresado:", pin);
+    }
+</script>
+
+</body>
+</html>

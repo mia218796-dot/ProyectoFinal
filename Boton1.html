@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Más Acerca de Kahoot</title>
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #9e4674, #8d5093); 
+        color: #fff;
+        overflow-x: hidden;
+    }
+
+    header {
+        color: black;
+        text-align: center;
+        padding: 50px 20px;
+        animation: fadeDown 1.2s ease-in-out;
+        background: linear-gradient(155deg, #3e1a41, #d080b6); 
+    }
+
+    header h1 {
+        font-size: 3rem;
+        margin: 0;
+        font-weight: 700;
+    }
+
+    header p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+    }
+
+    @keyframes fadeDown {
+        from { opacity: 0; transform: translateY(-40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1100px;
+        margin: auto;
+        margin-bottom: 60px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #2f2f2f; 
+        animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.1); 
+        backdrop-filter: blur(8px);
+        padding: 30px;
+        border-radius: 15px;
+        transition: transform 0.3s ease, background 0.3s ease;
+        cursor: pointer;
+        color: white; 
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .card h3 {
+        margin-top: 0;
+        font-size: 1.5rem;
+        color: #050504; 
+    }
+
+    .card p {
+        font-size: 1rem;
+        opacity: 0.9;
+    }
+    
+    .btn-volver {
+        display: inline-block;
+        margin: 40px auto;
+        padding: 12px 25px;
+        background: #f0f0f0;
+        color: #5d4f91; 
+        text-decoration: none;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        transition: 0.3s;
+        font-weight: 600;
+    }
+
+    .btn-volver:hover {
+        background: #ececec;
+        transform: scale(1.05);
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        opacity: 0.7;
+        font-size: 0.9rem;
+        color: #d0d0d0; 
+    }
+
+    /* Responsivo */
+    @media (max-width: 600px) {
+        header h1 {
+            font-size: 2.2rem;
+        }
+        .card {
+            padding: 20px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Más Acerca de Kahoot</h1>
+    <p>Conoce cómo funciona, sus beneficios y por qué es tan usado en educación.</p>
+</header>
+
+<div class="container">
+
+    <h2 class="section-title">¿Qué es Kahoot?</h2>
+    <p style="text-align:center; max-width:800px; margin:auto; color: white;">
+        Kahoot es una plataforma interactiva que permite crear cuestionarios,
+        juegos educativos y actividades dinámicas para aprender de forma divertida.
+    </p>
+
+    <h2 class="section-title">Características principales</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>🎮 Aprendizaje Dinámico</h3>
+            <p>Los estudiantes participan respondiendo preguntas en tiempo real.</p>
+        </div>
+
+        <div class="card">
+            <h3>📱 Multidispositivo</h3>
+            <p>Funciona en celulares, tablets y computadoras sin instalar nada.</p>
+        </div>
+
+        <div class="card">
+            <h3>⚡ Competencias</h3>
+            <p>Puntajes, rankings y música hacen la experiencia emocionante.</p>
+        </div>
+
+        <div class="card">
+            <h3>🛠 Personalizable</h3>
+            <p>Permite crear cuestionarios con imágenes, videos y diferentes tipos de preguntas.</p>
+        </div>
+
+        <div class="card">
+            <h3>👩‍🏫 Ideal para clases</h3>
+            <p>Perfecto para docentes que buscan hacer sus clases más interactivas.</p>
+        </div>
+
+        <div class="card">
+            <h3>🌎 Global</h3>
+            <p>Millones de usuarios usan Kahoot en todo el mundo.</p>
+        </div>
+    </div>
+
+    <div style="text-align:center;">
+        <a class="btn-volver" onclick="volver()">Volver</a>
+    </div>
+
+</div>
+
+<footer>
+    © 2025 Tu Proyecto Kahoot — Creado por Nayely
+</footer>
+
+<script>
+    function volver() {
+        window.history.back();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const elements = document.querySelectorAll(".card, .section-title, header, p");
+
+        elements.forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = "translateY(20px)";
+        });
+
+        const showElements = () => {
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 50) {
+                    el.style.transition = "0.7s";
+                    el.style.opacity = 1;
+                    el.style.transform = "translateY(0)";
+                }
+            });
+        };
+
+        showElements();
+        window.addEventListener("scroll", showElements);
+    });
+
+</script>
+</body>
+</html>

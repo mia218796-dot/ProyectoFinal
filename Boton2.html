@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Quiz</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body{
+            background: linear-gradient(155deg, #b35f94, #764b66); 
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+            padding: 20px;
+            align-items: center; 
+        }
+
+        .container{
+            width: 100%;
+            max-width: 600px; 
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            flex-grow: 1; 
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; 
+        }
+
+        .fade-in{
+            animation: fade 0.7s ease-in-out;
+        }
+
+        @keyframes fade {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        h1{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-group{
+            margin-bottom: 20px;
+        }
+
+        .input-group input{
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        .pregunta-box{
+            background: #3d3d3d;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+
+        .pregunta-box input{
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 8px;
+            border: none;
+            width: 100%;
+        }
+
+        .btn-add, .btn-submit{
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .btn-add{
+            background: #00c9a7;
+        }
+        .btn-add:hover{
+            background: #00b094;
+        }
+
+        .btn-submit{
+            background: #ff5f5f;
+        }
+        .btn-submit:hover{
+            background: #e65353;
+        }
+
+        .btn-volver {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #f0f0f0;
+            color: #5d4f91; 
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-weight: 600;
+            margin: 20px auto;
+        }
+
+        .btn-volver:hover {
+            background: #ececec;
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            opacity: 0.7;
+            font-size: 0.9rem;
+            color: #d0d0d0; 
+        }
+
+        @media screen and (max-width: 500px){
+            .container{
+                padding: 15px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container fade-in">
+        <h1>Crear Quiz</h1>
+
+        <form id="quizForm">
+
+            <div class="input-group">
+                <label>Título del Quiz</label>
+                <input type="text" id="titulo" required placeholder="Ej: Preguntas de Programación">
+            </div>
+
+            <div id="preguntasContainer"></div>
+
+            <button type="button" class="btn-add" onclick="agregarPregunta()">+ Agregar Pregunta</button>
+
+            <button type="submit" class="btn-submit">Guardar Quiz</button>
+        </form>
+    </div>
+
+    <div style="text-align:center;">
+        <a class="btn-volver" onclick="volver()">Volver</a>
+    </div>
+
+    <footer>
+        © 2025 Tu Proyecto Kahoot — Creado por Nayely
+    </footer>
+
+    <script>
+        let contador = 0;
+
+        function agregarPregunta(){
+            contador++;
+
+            const container = document.getElementById("preguntasContainer");
+            
+            const div = document.createElement("div");
+            div.classList.add("pregunta-box");
+            div.innerHTML = `
+                <label>Pregunta ${contador}</label>
+                <input type="text" placeholder="Escribe la pregunta..." required>
+
+                <label>Respuesta Correcta</label>
+                <input type="text" required placeholder="Respuesta correcta">
+
+                <label>Opción 2</label>
+                <input type="text" required>
+
+                <label>Opción 3</label>
+                <input type="text" required>
+
+                <label>Opción 4</label>
+                <input type="text" required>
+            `;
+
+            container.appendChild(div);
+        }
+
+        document.getElementById("quizForm").addEventListener("submit", function(e){
+            e.preventDefault();
+            alert("Quiz guardado exitosamente 🎉");
+        });
+
+        function volver() {
+            window.history.back();
+        }
+
+    </script>
+
+</body>
+</html>
